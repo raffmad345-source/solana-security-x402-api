@@ -1,0 +1,36 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Solana Token Security Micro-API",
+    "description": "Autonomous security validation service for Solana liquidity pools and tokens. Requires HTTP 402 micro-payment.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/data": {
+      "get": {
+        "summary": "Fetch Security Risk Analysis",
+        "description": "Returns token liquidity lock status, mint authority status, and risk scores.",
+        "parameters": [
+          {
+            "name": "signature",
+            "in": "query",
+            "description": "Solana transaction signature proving 0.0001 SOL payment.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful verification and data retrieval"
+          },
+          "402": {
+            "description": "Payment Required - 0.0001 SOL to specified wallet"
+          }
+        }
+      }
+    }
+  }
+}
+
